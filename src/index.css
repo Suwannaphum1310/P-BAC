@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* P-BAC Design System - วิทยาลัยเทคโนโลยีภูเวียงบัณฑิต */
+
+@layer base {
+  :root {
+    /* Primary Colors - Dark Maroon */
+    --primary: 0 100% 20%;
+    --primary-dark: 0 100% 15%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary Colors - Gold */
+    --secondary: 51 100% 50%;
+    --secondary-dark: 51 100% 45%;
+    --secondary-foreground: 0 100% 25%;
+    
+    /* Background & Foreground */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 20%;
+    
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+    
+    /* Muted */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    
+    /* Accent */
+    --accent: 51 100% 95%;
+    --accent-foreground: 0 100% 25%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Border & Input */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 100% 25%;
+    
+    --radius: 0.75rem;
+    
+    /* Sidebar */
+    --sidebar-background: 0 100% 20%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 0 100% 20%;
+    --sidebar-accent: 0 100% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 100% 15%;
+    --sidebar-ring: 51 100% 50%;
+    
+    /* Custom P-BAC Variables */
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-primary: 0 5px 15px rgba(128, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+    
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+    
+    --primary: 0 100% 20%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 51 100% 50%;
+    --secondary-foreground: 0 100% 25%;
+    
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 0 100% 15%;
+    --accent-foreground: 51 100% 50%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 51 100% 50%;
+    
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 51 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+  }
+
+  body {
+    @apply bg-background text-foreground font-prompt;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.85), hsl(0 0% 0% / 0.6));
+  }
+  
+  .cta-gradient {
+    background: linear-gradient(to right, hsl(var(--primary) / 0.9), hsl(var(--primary) / 0.7));
+  }
+  
+  /* Floating Shapes Animation */
+  .floating-shape {
+    @apply absolute rounded-full pointer-events-none;
+    animation: float 20s infinite linear;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+      transform: translate(30px, -50px) rotate(120deg);
+    }
+    66% {
+      transform: translate(-20px, 20px) rotate(240deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+  
+  /* Reveal Animations */
+  .reveal-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .reveal-left {
+    @apply opacity-0 -translate-x-12 transition-all duration-700 ease-out;
+  }
+  
+  .reveal-right {
+    @apply opacity-0 translate-x-12 transition-all duration-700 ease-out;
+  }
+  
+  .reveal-active {
+    @apply opacity-100 translate-x-0 translate-y-0;
+  }
+  
+  /* Typing Cursor Effect */
+  .typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    @apply text-secondary;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* Ripple Effect */
+  .ripple {
+    @apply absolute bg-white/30 rounded-full pointer-events-none;
+    transform: scale(0);
+    animation: ripple-effect 0.6s linear;
+  }
+  
+  @keyframes ripple-effect {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  /* Card Glow Effect on Hover */
+  .card-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .card-glow::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--secondary) / 0.1), transparent 40%);
+  }
+  
+  .card-glow:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Section Styles */
+  .section {
+    @apply py-20;
+  }
+  
+  .section-header {
+    @apply mb-12;
+  }
+  
+  .section-subtitle {
+    @apply text-primary font-semibold uppercase tracking-wider mb-2 text-sm;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+  
+  /* Page Transition - Soft Float */
+  @keyframes soft-float-in {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .page-transition {
+    animation: soft-float-in 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+}
+
+@layer utilities {
+  /* Text Shadow Utility */
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Logo Glow */
+  .logo-glow {
+    filter: drop-shadow(0 0 10px hsl(var(--secondary) / 0.5));
+  }
+  
+  /* Delay utilities for animations */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+}
