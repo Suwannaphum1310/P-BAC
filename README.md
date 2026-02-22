@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# P-BAC college project
 
 ## Project info
 
